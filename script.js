@@ -32,7 +32,7 @@ if (fortuneButton) {
                 if (response.ok) {
                     response.json().then((json) => {
                         output.textContent = json.choices[0].text.trim();
-                    });
+                    });~
                 }
                 
                 outputContainer.style.display = 'block';
