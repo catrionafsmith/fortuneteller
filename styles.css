@@ -1,0 +1,28 @@
+h1 {
+    font-family: 'Audiowide', sans-serif;
+    color: white;
+    text-align: center;
+}
+
+p {
+    font-family: 'Orbitron', sans-serif;
+    font-size: larger;
+    text-align: center;
+    color: white;
+}
+
+body {
+    background-image: url('fortuneteller.png');
+  }
+
+#fetch-fortune-btn {
+    font-family: 'Orbitron', sans-serif;
+    justify-content: center;
+    border-radius: 100px;
+
+}
+
+#loadingButton {
+    font-family: 'Orbitron', sans-serif;
+    border-radius: 100px;
+}
