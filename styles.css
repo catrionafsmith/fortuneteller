@@ -26,3 +26,11 @@ body {
     font-family: 'Orbitron', sans-serif;
     border-radius: 100px;
 }
+
+#loadingButton {
+    display: none;
+}
+
+#output-container {
+    display: none;
+}
