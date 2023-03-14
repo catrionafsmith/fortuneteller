@@ -10,9 +10,9 @@ if (fortuneButton) {
     fortuneButton.addEventListener('click', async () => {
         loadingButton.style.display = 'block'
         loadingButton.scrollIntoView({ behavior: 'smooth' })
-        // console.log(text)
+
         const prompt = `You are an old wizened fortune-telling robot with a snarky tone who can see into the future. I say please tell me how i will make my fortune in the tech industry. In three paragraphs, tell me my fortune and finish with a bizarre tech saying that you have invented. You reply:`
-        // console.log(prompt)
+
     
         const keyresp = await fetch('/.netlify/functions/get-token')
         .then(response => response.json()
@@ -21,7 +21,7 @@ if (fortuneButton) {
         const response = await fetch(
                 `https://api.openai.com/v1/completions`,
                 {
-                    body: JSON.stringify({"model": "text-davinci-003", "prompt": prompt, "temperature": 0.86, "max_tokens": 200}),
+                    body: JSON.stringify({"model": "text-davinci-003", "prompt": prompt, "temperature": 0.86, "max_tokens": 400}),
                     method: "POST",
                     headers: {
                         "content-type": "application/json",
@@ -29,7 +29,6 @@ if (fortuneButton) {
                     },
                         }
             ).then((response) => {
-                console.log(text)
                 if (response.ok) {
                     response.json().then((json) => {
                         output.textContent = json.choices[0].text.trim();
@@ -38,7 +37,6 @@ if (fortuneButton) {
                 
                 outputContainer.style.display = 'block';
                 loadingButton.style.display = 'none';
-                selectFeedbackForm.style.display = 'block';
                 outputContainer.scrollIntoView({ behavior: 'smooth' })
             });
     
@@ -46,51 +44,4 @@ if (fortuneButton) {
     
         });
     }
-
-// Function for EmailGenie page
-if (emailButton) {
-    emailButton.addEventListener('click', async () => {
-        loadingButton.style.display = 'block'
-        loadingButton.scrollIntoView({ behavior: 'smooth' })
-        const getSelectedMember = document.querySelector('input[name="communityMembers"]:checked')
-        // console.log(getSelectedMember)
-        // console.log("Button clicked")
-        const text = document.getElementById("textareaspace").value
-        // console.log(text)
-        const prompt = `you are a helpful, email-writing bot with a professional tone. I say please write me a correctly formatted email from a teacher to a ${getSelectedMember.id} about the subject of: ${text}. You reply:`
-        // console.log(prompt)
-    
-        const keyresp = await fetch('/.netlify/functions/get-token')
-        .then(response => response.json()
-        )
-    
-        const response = await fetch(
-                `https://api.openai.com/v1/completions`,
-                {
-                    body: JSON.stringify({"model": "text-davinci-003", "prompt": prompt, "temperature": 0.86, "max_tokens": 200}),
-                    method: "POST",
-                    headers: {
-                        "content-type": "application/json",
-                        Authorization:`Bearer ` + keyresp['message'],
-                    },
-                        }
-            ).then((response) => {
-                console.log(text)
-                if (response.ok) {
-                    response.json().then((json) => {
-                        output.textContent = json.choices[0].text.trim();
-                    });
-                }
-                
-                outputContainer.style.display = 'block';
-                loadingButton.style.display = 'none';
-                selectFeedbackForm.style.display = 'block';
-                outputContainer.scrollIntoView({ behavior: 'smooth' })
-            });
-    
-            // console.log("Completed!");
-    
-        });
-}
-
 
