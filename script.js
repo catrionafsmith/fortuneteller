@@ -19,9 +19,9 @@ if (fortuneButton) {
         )
     
         const response = await fetch(
-                `https://api.openai.com/v1/completions`,
+                `https://api.openai.com/v1/chat/completions`,
                 {
-                    body: JSON.stringify({"model": "text-davinci-003", "prompt": prompt, "temperature": 0.86, "max_tokens": 400}),
+                    body: JSON.stringify({"model": "gpt-3.5-turbo", "messages": [{"role": "system", "content": prompt}], "temperature": 0.86, "max_tokens": 400}),
                     method: "POST",
                     headers: {
                         "content-type": "application/json",
@@ -31,7 +31,7 @@ if (fortuneButton) {
             ).then((response) => {
                 if (response.ok) {
                     response.json().then((json) => {
-                        output.textContent = json.choices[0].text.trim();
+                        output.textContent = json.choices[0].message.content.trim();
                     });
                 }
                 
@@ -45,3 +45,24 @@ if (fortuneButton) {
         });
     }
 
+    // const response = await fetch(
+    //     `https://api.openai.com/chat/completions`,
+    //     {
+    //         body: JSON.stringify({"model": "gpt-3.5-turbo", "messages": [{"role": "user", "content": prompt}], "temperature": 0.86, "max_tokens": 400}),
+    //         method: "POST",
+    //         headers: {
+    //             "content-type": "application/json",
+    //             Authorization:`Bearer ` + keyresp['message'],
+    //         },
+    //             }
+    // ).then((response) => {
+    //     if (response.ok) {
+    //         response.json().then((json) => {
+    //             output.textContent = json.choices[0].text.trim();
+    //         });
+    //     }
+        
+    //     outputContainer.style.display = 'block';
+    //     loadingButton.style.display = 'none';
+    //     outputContainer.scrollIntoView({ behavior: 'smooth' })
+    // });
