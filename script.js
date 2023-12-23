@@ -21,7 +21,7 @@ if (fortuneButton) {
         const response = await fetch(
                 `https://api.openai.com/v1/chat/completions`,
                 {
-                    body: JSON.stringify({"model": "gpt-3.5-turbo", "messages": [{"role": "system", "content": prompt}], "temperature": 0.86, "max_tokens": 400}),
+                    body: JSON.stringify({"model": "gpt-3.5-turbo-instruct", "messages": [{"role": "system", "content": prompt}], "temperature": 0.86, "max_tokens": 400}),
                     method: "POST",
                     headers: {
                         "content-type": "application/json",
